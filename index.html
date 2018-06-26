@@ -24,8 +24,188 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+        <section><h3>Introduction to Text Mining in R</h3><br /><h4>July
+            3 2018</h4></section>
+        <section><h3>Outline</h3>
+          <ul><li>Getting R Studio</li>
+            <li>Basic R syntax</li>
+            <li>Swirl tutorial</li>
+            <li>Data types in R</li>
+            <li>Tidy Data</li>
+            <li>Working with Text</li>
+            <li>Text mining examples</li>
+            <li>Where to go from here</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Getting R Studio</h3>
+          <p><a href="https://www.rstudio.com/" target="_blank">R Studio
+            Website</a></p>
+          <ul><li>Click on "Download R Studio"</li>
+            <li>Select "RStudio Desktop / Open Source License"</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+          <h3>Basic R Syntax</h3>
+          <ul><li>Variables</li>
+            <li>Functions</li>
+          </ul>
+          </section>
+          <section>
+            <h3>Variables</h3>
+            <p>Gives a <em>name</em> to a <em>value</em></p>
+          </section>
+          <section>
+            <p>Variable Example:<p>
+            <pre><code data-trim data-noescape>
+            > name <- "Moby Dick"
+            </code></pre>
+            <pre><code data-trim data-noescape>
+            > name -> [1] "Moby Dick"
+            </code></pre>
+              <p>Notice the "values" pane in R Studio</p>
+          </section>
+          <section>
+            <p>Function Example 1</p>
+            <pre><code data-trim data-noescape>
+            > print("Moby Dick") -> [1] Moby Dick
+            </code></pre>
+            <pre><code data-trim data-noescape>
+            > print(name) -> [1] Moby Dick
+            </code></pre>
+            <p>Notice no new information in the "values" pane</p>
+          </section>
+          <section>
+            <p>Function Example 2</p>
+            <pre><code data-trim data-noescape>
+            > sqrt(9) -> [1] 3
+            </code></pre>
+            <p>Notice no new information in the "values" pane</p>
+            <pre><code data-trim data-noescape>
+            > square_root_of_nine <- sqrt(9) -> [nothing]
+            </code></pre>
+            <p>But notice the new value in the "values" pane</p>
+          </section>
+          <section>
+            <p>Assignment vs. Side Effect</p>
+            <ul><li>Assigment names a value (assigns a value to a
+                name)</li>
+              <li>Assignment give values meaningful names...</li>
+              <li>... and allow us to reuse values.</li>
+              <li>Side effects do something other than
+                assignment...</li>
+              <li>Like printing to the screen <code>print()</code></li>
+            </ul>
+          </section>
+          <section>
+            <p>Return Values</p>
+            <p>Functions like <code>sqrt()</code> that have return
+            values can be used for assigmment. Functions that have no
+            return value like <code>print()</code> are used for their
+            side effects.</p>
+          </section>
+          <section>
+            <p>Built-in R functions</p>
+            <p>Give the following functions a try:</p>
+            <code>
+              <ul><li>abs(-5), abs(5)</li>
+                <li>strsplit("Moby Dick", " ")</li>
+                <li>strsplit("Moby Dick", "")</li>
+                <li>(What's the difference?)</li>
+                <li>words <- strsplit("Moby Dick", " ")</li>
+                <li>letters <- strsplit("Moby Dick", "")</li>
+                <li>lengths(words)</li>
+                <li>lengths(letters)</li>
+                <li>tolower(name)</li>
+                <li>toupper(name)</li>
+              </ul>
+            </code>
+          </section>
+        </section>
+        <section>
+          <section>
+            <p>Swirl Tutorial</p>
+            <pre><code data-trim data-noescape>
+            > install.packages("swirl")
+            > library("swirl")
+            > swirl()
+            </code></pre>
+          </section>
+          <section>
+          <img src="img/swirl.png" height="600px" />
+          </section>
+          <section>
+            <ul><li>Hit enter</li>
+              <li>Enter 1 for "1: R Programming: The basics of
+                programming in R"</li>
+              <li>Enter 1 to start the course</li>
+              <li>Enter 1 again for "Basic Building Blocks"</li>
+              <li>30 mins</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <p>Data Types in R</p>
+            <ul>
+            <li>Basic type is the <em>vector</em></li>
+            <li>A vector is a collection of things.</li>
+            <li>A number like "5" is a vector of 1 thing.</li>
+            <li>A string like "Moby Dick" is a vector of 1 thing.</li>
+          <li><code>c("Moby" "Dick")</code> is a vector of 2 things.</li>
+          <li>Vectors can hold different kinds of things: <code>c(5, "Moby",
+              6.8, "Dick")</code></li>
+          <li>or how about...</li>
+          </ul>
+          </section>
+          <section>
+            <pre><code data-trim data-noescape>
+              c("Moby Dick, or, The Whale", "Herman Melville", 1851,
+              "PS 2384 M68 2002", "Rutherford", "ON SHELF")
+            </code></pre>
+            <pre><code data-trim data-noescape>
+              c("CHAPTER", "1.", "Loomings.", "Call", "me", "Ishmael.",
+              "Some", "years", "ago")
+            </code></pre>
+          </section>
+          <section>
+            <p>Kinds of vectors</p>
+            <ul><li>Numeric: c(1, 2, 3, 4, 5)</li>
+              <li>Character: c("one", "two", "three", "four",
+                "five")</li>
+              <li>Logical: c(TRUE, TRUE, FALSE, TRUE, FALSE)</li>
+              <li>(TRUE and FALSE are values, like any other)</li>
+              <li> > 5 > 2 -> [1] TRUE </li>
+              <li> > 5 < 2 -> [1] FALSE</li>
+              </ul>
+          </section>
+          <section>
+            <p>Matrix</p>
+            <ul><li>2-dimensional vector (e.g. 5 x 5)</li>
+              <li>Can only contain a single kind of thing.</li>
+            </ul>
+            <p>Array</p>
+            <ul><li>Multi-dimensional vector</li>
+              <li>... or a matrix with more than 2 dimensions.</li>
+              <li>Can still only contain one kind of thing.</li>
+            </ul>
+          </section>
+          <section>
+            <p>Data frame</p>
+            <ul><li>Probably the most commonly used data type in data
+                science.</li>
+              <li>Each column can contain different kinds of
+                things.</li>
+              <li>Easiest to think about frames as spreadsheets
+                with...</li>
+              <li>Columns as data fields</li>
+              <li>Rows as observations/records</li>
+            </ul>
+         </section>
+        </section>
 			</div>
 		</div>
 
