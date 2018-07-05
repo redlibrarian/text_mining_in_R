@@ -405,8 +405,8 @@ install.packages("ggplot2")
 library(ggplot2)
 
 tidy_books %&gt;%
-  count(word, sort=TRUE %&gt;%
-  filter(n &gt; 600 %&gt;%
+  count(word, sort=TRUE) %&gt;%
+  filter(n &gt; 600) %&gt;%
   mutate(word = reorder(word, n)) %&gt;%
   ggplot(aes(word, n)) +
   geom_col() +
